@@ -11,7 +11,6 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
     <AmountVisibilityProvider>
       <div className="flex h-screen overflow-hidden">
-        {/* Backdrop for mobile */}
         {sidebarOpen && (
           <div
             className="fixed inset-0 bg-black/50 z-20 lg:hidden"
