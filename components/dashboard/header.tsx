@@ -38,12 +38,12 @@ export function Header({ greeting = "Good evening", userName = "Mayushan", onMen
   const isDark = theme === "dark";
 
   return (
-    <header className="sticky top-0 z-10 flex h-16 items-center justify-between bg-white dark:bg-slate-900 px-4 md:px-6 transition-colors duration-300">
+    <header className="sticky top-0 z-10 flex h-16 items-center justify-between bg-white dark:bg-neutral-900 px-4 md:px-6 transition-colors duration-300">
       <div className="flex items-center gap-4">
         {/* Mobile menu button */}
-        <Button 
-          variant="ghost" 
-          size="icon" 
+        <Button
+          variant="ghost"
+          size="icon"
           className="lg:hidden"
           onClick={onMenuClick}
         >
@@ -51,7 +51,7 @@ export function Header({ greeting = "Good evening", userName = "Mayushan", onMen
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </Button>
-        
+
         <div className="text-sm text-slate-500 dark:text-slate-400">
           {greeting}, {userName}
         </div>
@@ -62,7 +62,7 @@ export function Header({ greeting = "Good evening", userName = "Mayushan", onMen
         <Button variant="ghost" size="icon" className="hidden sm:flex">
           <Search className="h-5 w-5 text-slate-700 dark:text-slate-300" />
         </Button>
-        
+
         <Button variant="ghost" size="icon" onClick={toggleAmountVisibility}>
           {isAmountVisible ? (
             <Eye className="h-5 w-5 text-slate-700 dark:text-slate-300" />
@@ -70,7 +70,7 @@ export function Header({ greeting = "Good evening", userName = "Mayushan", onMen
             <EyeOff className="h-5 w-5 text-slate-700 dark:text-slate-300" />
           )}
         </Button>
-        
+
         {mounted && (
           <Button variant="ghost" size="icon" onClick={toggleTheme}>
             {isDark ? (
@@ -80,7 +80,7 @@ export function Header({ greeting = "Good evening", userName = "Mayushan", onMen
             )}
           </Button>
         )}
-        
+
         <Button variant="ghost" size="icon" className="hidden sm:flex">
           <Bell className="h-5 w-5 text-slate-700 dark:text-slate-300" />
         </Button>
@@ -89,7 +89,7 @@ export function Header({ greeting = "Good evening", userName = "Mayushan", onMen
           <Plus className="h-4 w-4" />
           Payout
         </Button>
-        
+
         {/* Mobile: Show only icon */}
         <Button size="icon" className="sm:hidden" onClick={() => setPayoutModalOpen(true)}>
           <Plus className="h-4 w-4" />
