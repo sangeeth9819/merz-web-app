@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import { X } from "lucide-react";
 import {
   Collapsible,
@@ -98,8 +99,22 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
 
           {/* Footer */}
           <div className="px-4 py-3">
-            <div className="text-xs text-slate-500 dark:text-slate-400">
-              Powered by <span className="font-semibold text-slate-700 dark:text-slate-200">merz</span>
+            <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
+              Powered by
+              <div className="relative h-4 w-12">
+                <Image
+                  src="/assets/logo-black.svg"
+                  alt="Merz"
+                  fill
+                  className="object-contain block dark:hidden"
+                />
+                <Image
+                  src="/assets/logo-white.svg"
+                  alt="Merz"
+                  fill
+                  className="object-contain hidden dark:block"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -131,8 +146,22 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
 
         {/* Footer */}
         <div className="px-4 py-3">
-          <div className="text-xs text-slate-500 dark:text-slate-400">
-            Powered by <span className="font-semibold text-slate-700 dark:text-slate-200">merz</span>
+          <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
+            Powered by
+            <div className="relative h-4 w-12">
+              <Image
+                src="/assets/logo-black.svg"
+                alt="Merz"
+                fill
+                className="object-contain block dark:hidden"
+              />
+              <Image
+                src="/assets/logo-white.svg"
+                alt="Merz"
+                fill
+                className="object-contain hidden dark:block"
+              />
+            </div>
           </div>
         </div>
       </div>

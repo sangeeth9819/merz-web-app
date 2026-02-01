@@ -17,8 +17,15 @@ import {
   SlidersHorizontal,
   Filter,
   UserPlus,
-  Plus
+  Plus,
+  MoreVertical
 } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface Recipient {
   id: string;
@@ -225,8 +232,43 @@ export default function RecipientsPage() {
 
             {/* Toolbar and Actions */}
             <div className="flex items-center gap-2">
-              {/* View Icons */}
-              <div className="flex items-center gap-1 px-1 py-1 bg-slate-50 dark:bg-slate-800 rounded-md">
+              {/* Mobile Tools Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild className="sm:hidden">
+                  <Button variant="outline" size="sm" className="h-9 w-9 p-0">
+                    <MoreVertical className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="z-50 bg-white dark:bg-neutral-900 border border-slate-200 dark:border-slate-700 shadow-lg">
+                  <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
+                    <LayoutGrid className="h-4 w-4" />
+                    Grid View
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
+                    <List className="h-4 w-4" />
+                    List View
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
+                    <RotateCcw className="h-4 w-4" />
+                    Refresh
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
+                    <Download className="h-4 w-4" />
+                    Export
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
+                    <SlidersHorizontal className="h-4 w-4" />
+                    Settings
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
+                    <Filter className="h-4 w-4" />
+                    Filter
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              {/* View Icons - Hidden on mobile */}
+              <div className="hidden sm:flex items-center gap-1 px-1 py-1 bg-slate-50 dark:bg-slate-800 rounded-md">
                 <button className="p-1.5 hover:bg-white dark:hover:bg-slate-700 rounded transition-colors">
                   <LayoutGrid className="h-4 w-4 text-slate-600 dark:text-slate-400" />
                 </button>
@@ -250,18 +292,20 @@ export default function RecipientsPage() {
               {/* Action Buttons */}
               <Button
                 variant="outline"
+                size="sm"
                 className="gap-2 border-primary text-primary hover:bg-primary/5"
                 onClick={() => setIsInviteModalOpen(true)}
               >
                 <UserPlus className="h-4 w-4" />
-                Invite
+                <span className="hidden sm:inline">Invite</span>
               </Button>
               <Button
+                size="sm"
                 className="gap-2 bg-primary hover:bg-primary/90"
                 onClick={() => setIsAddModalOpen(true)}
               >
                 <Plus className="h-4 w-4" />
-                Add New
+                <span className="hidden sm:inline">Add New</span>
               </Button>
             </div>
           </div>

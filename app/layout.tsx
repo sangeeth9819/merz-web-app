@@ -24,6 +24,9 @@ export const metadata: Metadata = {
   title: "Merz - Corporate Banking Portal",
   description: "Secure payment and banking portal for corporate accounts",
   keywords: ["banking", "payments", "corporate", "finance"],
+  icons: {
+    icon: "/assets/favicon.svg",
+  },
 };
 
 export default function RootLayout({

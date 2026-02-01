@@ -176,9 +176,9 @@ export function AddRecipientModal({ open, onOpenChange }: AddRecipientModalProps
                         </div>
 
                         {/* Content */}
-                        <div className="flex-1 flex flex-col lg:flex-row overflow-hidden bg-white dark:bg-neutral-900">
-                            {/* Mobile Steps Indicator */}
-                            <div className="lg:hidden flex items-center justify-center px-4 py-3 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-neutral-900/50 shrink-0">
+                        <div className="flex-1 flex flex-col xl:flex-row overflow-hidden bg-white dark:bg-neutral-900">
+                            {/* Mobile/Tablet Steps Indicator - Shows at top */}
+                            <div className="xl:hidden flex items-center justify-center px-4 py-3 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-neutral-900/50 shrink-0">
                                 {steps.map((step, index) => (
                                     <div key={step.number} className="flex items-center">
                                         <div
@@ -198,8 +198,8 @@ export function AddRecipientModal({ open, onOpenChange }: AddRecipientModalProps
                                 ))}
                             </div>
 
-                            {/* Left Sidebar - Steps (Hidden on Mobile/Tablet) */}
-                            <div className="hidden lg:block w-64 border-r border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-neutral-900/50 p-6 shrink-0">
+                            {/* Left Sidebar - Steps (Desktop only) */}
+                            <div className="hidden xl:block w-64 border-r border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-neutral-900/50 p-6 shrink-0">
                                 <div className="space-y-3">
                                     {steps.map((step) => (
                                         <div
@@ -228,7 +228,7 @@ export function AddRecipientModal({ open, onOpenChange }: AddRecipientModalProps
                             </div>
 
                             {/* Main Content Area */}
-                            <ScrollArea className="flex-1 p-4 lg:p-8">
+                            <ScrollArea className="flex-1 p-4 xl:p-8">
                                 <div className="max-w-3xl mx-auto pb-24">
                                     {/* Step 1: General */}
                                     {currentStep === 1 && (

@@ -153,9 +153,30 @@ export function InviteRecipientModal({ open, onOpenChange }: InviteRecipientModa
                             <X className="h-5 w-5 text-slate-500" />
                         </button>
 
-                        <div className="flex h-full overflow-hidden flex-col md:flex-row">
-                            {/* Left Sidebar - Step Navigator */}
-                            <div className="w-full md:w-64 bg-slate-100 dark:bg-slate-800/50 p-4 md:p-6 shrink-0 hidden md:block">
+                        <div className="flex h-full overflow-hidden flex-col xl:flex-row">
+                            {/* Mobile/Tablet Steps Indicator - Shows at top */}
+                            <div className="xl:hidden flex items-center justify-center px-4 py-3 border-b border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-800/50 shrink-0">
+                                {steps.map((step, index) => (
+                                    <div key={step.number} className="flex items-center">
+                                        <div
+                                            className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold ${step.completed
+                                                ? "bg-teal-500 text-white"
+                                                : step.active
+                                                    ? "bg-teal-500 text-white"
+                                                    : "bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400"
+                                                }`}
+                                        >
+                                            {step.completed ? <Check className="h-3 w-3" /> : step.number}
+                                        </div>
+                                        {index < steps.length - 1 && (
+                                            <div className={`w-8 h-0.5 mx-1 ${step.completed ? "bg-teal-500" : "bg-slate-200 dark:bg-slate-700"}`} />
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Left Sidebar - Step Navigator (Desktop only) */}
+                            <div className="w-64 bg-slate-100 dark:bg-slate-800/50 p-6 shrink-0 hidden xl:block">
                                 <div className="flex items-center gap-3 mb-8">
                                     <div className="h-10 w-10 rounded-xl bg-teal-500 flex items-center justify-center">
                                         <User className="h-5 w-5 text-white" />
@@ -177,11 +198,11 @@ export function InviteRecipientModal({ open, onOpenChange }: InviteRecipientModa
                                                 }`}
                                         >
                                             <div
-                                                className={`h-6 w-6 rounded-full flex items-center justify-center text-xs font-medium shrink-0 ${step.completed
+                                                className={`h-6 w-6 rounded-full flex items-center justify-center text-xs font-semibold shrink-0 ${step.completed
                                                     ? "bg-teal-500 text-white"
                                                     : step.active
                                                         ? "bg-teal-500 text-white"
-                                                        : "bg-white dark:bg-slate-700 border-2 border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400"
+                                                        : "bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400"
                                                     }`}
                                             >
                                                 {step.completed ? <Check className="h-3 w-3" /> : step.number}
@@ -194,7 +215,7 @@ export function InviteRecipientModal({ open, onOpenChange }: InviteRecipientModa
 
                             {/* Main Content Area */}
                             <div className="flex-1 flex flex-col min-w-0 bg-white dark:bg-neutral-900 w-full">
-                                <ScrollArea className="flex-1 px-4 md:px-8 py-4 md:py-6">
+                                <ScrollArea className="flex-1 px-4 xl:px-8 py-4 xl:py-6">
                                     {currentStep === 1 && (
                                         <div className="max-w-3xl mx-auto space-y-6">
                                             <h1 className="text-2xl font-semibold text-slate-900 dark:text-white">
@@ -256,7 +277,7 @@ export function InviteRecipientModal({ open, onOpenChange }: InviteRecipientModa
                                                 <Label className="text-sm font-medium text-slate-900 dark:text-white">
                                                     Recipient Type
                                                 </Label>
-                                                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                                                     {recipientTypes.map((type) => {
                                                         const Icon = type.icon;
                                                         return (
@@ -394,7 +415,7 @@ export function InviteRecipientModal({ open, onOpenChange }: InviteRecipientModa
                                             </div>
 
                                             {/* Email and Phone */}
-                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                 <div className="space-y-2">
                                                     <Label htmlFor="email" className="text-sm font-medium text-slate-900 dark:text-white">
                                                         Email Address
