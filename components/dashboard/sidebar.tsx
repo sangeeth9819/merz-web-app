@@ -12,12 +12,21 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
   Home,
   Settings,
   List,
   Users,
   Layers,
-  ChevronDown
+  ChevronDown,
+  LogOut
 } from "lucide-react";
 
 const navigation = [
@@ -68,15 +77,36 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
         <div className="flex h-full w-64 flex-col bg-slate-50 dark:bg-neutral-900">
           {/* Mobile Header with close button */}
           <div className="flex h-16 items-center justify-between px-4">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-white font-bold">
-                M
-              </div>
-              <div>
-                <div className="font-semibold text-sm dark:text-white">John Keells PLC</div>
-                <div className="text-xs text-slate-500 dark:text-slate-400">Corporate</div>
-              </div>
-            </div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <div className="flex items-center gap-3 cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 p-2 rounded-lg transition-colors -ml-2">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-white font-bold">
+                    M
+                  </div>
+                  <div>
+                    <div className="font-semibold text-sm dark:text-white leading-none">John Keells PLC</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Corporate</div>
+                  </div>
+                  <ChevronDown className="h-4 w-4 text-slate-400 ml-1" />
+                </div>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-56 z-50 bg-white dark:bg-neutral-900 border border-slate-200 dark:border-slate-700 shadow-xl" side="bottom">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link href="/settings/general" className="cursor-pointer w-full flex items-center">
+                    <Settings className="mr-2 h-4 w-4" />
+                    <span>Settings</span>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/signin" className="cursor-pointer w-full flex items-center text-red-600 dark:text-red-400 focus:text-red-600 dark:focus:text-red-400">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Log out</span>
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <button
               onClick={onClose}
               className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
@@ -122,15 +152,38 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
 
       {/* Desktop sidebar - always visible */}
       <div className="hidden lg:flex h-full w-64 flex-col bg-slate-50 dark:bg-neutral-900 transition-colors duration-300">
-        {/* Logo */}
-        <div className="flex h-16 items-center gap-3 px-6">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-white font-bold">
-            M
-          </div>
-          <div>
-            <div className="font-semibold text-sm dark:text-white">John Keells PLC</div>
-            <div className="text-xs text-slate-500 dark:text-slate-400">Corporate</div>
-          </div>
+        {/* Desktop Header / Logo Area */}
+        <div className="flex h-16 items-center px-4">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <div className="flex items-center gap-3 w-full cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 p-2 rounded-lg transition-colors">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-white font-bold shrink-0">
+                  M
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="font-semibold text-sm dark:text-white truncate">John Keells PLC</div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400 truncate mt-0.5">Corporate</div>
+                </div>
+                <ChevronDown className="h-4 w-4 text-slate-400 shrink-0" />
+              </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-56 z-50 bg-white dark:bg-neutral-900 border border-slate-200 dark:border-slate-700 shadow-xl" side="bottom">
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem asChild>
+                <Link href="/settings/general" className="cursor-pointer w-full flex items-center">
+                  <Settings className="mr-2 h-4 w-4" />
+                  <span>Settings</span>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/signin" className="cursor-pointer w-full flex items-center text-red-600 dark:text-red-400 focus:text-red-600 dark:focus:text-red-400">
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Log out</span>
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
         {/* Navigation */}

@@ -29,7 +29,7 @@ export default function SignInPage() {
             <div className="hidden lg:flex w-1/2 bg-neutral-900 relative overflow-hidden flex-col justify-between p-12 text-white">
                 {/* Abstract Background Effect */}
                 <div className="absolute inset-0 z-0">
-                    <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-teal-900/40 via-neutral-900 to-neutral-900" />
+                    <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/40 via-neutral-900 to-neutral-900" />
                     <div className="absolute bottom-0 left-0 w-full h-[50%] bg-gradient-to-t from-black/50 to-transparent" />
                 </div>
 
@@ -54,7 +54,7 @@ export default function SignInPage() {
                 </div>
 
                 <div className="relative z-10 text-sm text-slate-500">
-                    © 2024 Merz Financial Technologies. All rights reserved.
+                    © 2026 Merz. All rights reserved.
                 </div>
             </div>
 
@@ -136,7 +136,7 @@ export default function SignInPage() {
                             </div>
                             <Link
                                 href="#"
-                                className="text-sm font-medium text-teal-600 hover:text-teal-500 dark:text-teal-400"
+                                className="text-sm font-medium text-primary hover:text-primary/80"
                             >
                                 Forgot password?
                             </Link>
@@ -144,7 +144,7 @@ export default function SignInPage() {
 
                         <Button
                             type="submit"
-                            className="w-full bg-teal-600 hover:bg-teal-700 text-white h-11"
+                            className="w-full bg-primary hover:bg-primary/90 text-white h-11"
                             disabled={isLoading}
                         >
                             {isLoading ? (
@@ -161,7 +161,7 @@ export default function SignInPage() {
                         Don&apos;t have an account?{" "}
                         <Link
                             href="#"
-                            className="underline underline-offset-4 hover:text-teal-600 dark:hover:text-teal-400"
+                            className="underline underline-offset-4 hover:text-primary"
                         >
                             Contact Admin
                         </Link>
