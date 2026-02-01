@@ -256,7 +256,7 @@ export function PayoutModal({ open, onOpenChange }: PayoutModalProps) {
                 </TabsList>
               </div>
 
-              <ScrollArea className="flex-1 px-6 bg-white dark:bg-neutral-900 min-h-0">
+              <ScrollArea className="flex-1 px-4 md:px-6 bg-white dark:bg-neutral-900 min-h-0">
                 {/* Step 1: Single Payout Tab */}
                 {currentStep === 1 && (
                   <TabsContent value="single" className="mt-6 space-y-6 pb-24">
@@ -264,7 +264,7 @@ export function PayoutModal({ open, onOpenChange }: PayoutModalProps) {
                       {/* Left Section - Recipient Selection */}
                       <div className="lg:col-span-2 space-y-4">
                         {/* Search and Action Buttons Row */}
-                        <div className="flex items-center gap-3">
+                        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                           <div className="relative flex-1">
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
                             <Input
@@ -274,18 +274,20 @@ export function PayoutModal({ open, onOpenChange }: PayoutModalProps) {
                               className="pl-10 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 h-11"
                             />
                           </div>
-                          <Button variant="outline" size="sm" className="gap-2 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-primary">
-                            <Mail className="h-4 w-4" />
-                            Invite
-                          </Button>
-                          <Button variant="outline" size="sm" className="gap-2 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-primary">
-                            <Plus className="h-4 w-4" />
-                            Add New
-                          </Button>
+                          <div className="flex gap-2">
+                            <Button variant="outline" size="sm" className="flex-1 sm:flex-initial gap-2 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-primary">
+                              <Mail className="h-4 w-4" />
+                              Invite
+                            </Button>
+                            <Button variant="outline" size="sm" className="flex-1 sm:flex-initial gap-2 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-primary">
+                              <Plus className="h-4 w-4" />
+                              Add New
+                            </Button>
+                          </div>
                         </div>
 
-                        {/* Recipients Table */}
-                        <div className="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden bg-white dark:bg-neutral-900">
+                        {/* Recipients Table - Desktop */}
+                        <div className="hidden md:block border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden bg-white dark:bg-neutral-900">
                           {/* Table Header */}
                           <div className="grid grid-cols-3 gap-6 px-4 py-3 bg-white dark:bg-neutral-900 text-xs font-medium text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-800">
                             <div className="flex items-center gap-1">
@@ -353,6 +355,50 @@ export function PayoutModal({ open, onOpenChange }: PayoutModalProps) {
                               </div>
                             ))}
                           </div>
+                        </div>
+
+                        {/* Recipients Cards - Mobile */}
+                        <div className="md:hidden space-y-2">
+                          {filteredRecipients.map((recipient) => (
+                            <div
+                              key={recipient.id}
+                              className={`p-3 rounded-xl border cursor-pointer transition-all ${selectedRecipient === recipient.id
+                                ? "border-primary bg-primary/5 dark:bg-primary/10"
+                                : "border-slate-200 dark:border-slate-700 hover:border-slate-300"
+                                }`}
+                              onClick={() => setSelectedRecipient(recipient.id)}
+                            >
+                              <div className="flex items-start gap-3">
+                                <input
+                                  type="radio"
+                                  checked={selectedRecipient === recipient.id}
+                                  onChange={() => setSelectedRecipient(recipient.id)}
+                                  className="accent-primary w-4 h-4 mt-1"
+                                />
+                                <Avatar className="h-9 w-9 shrink-0">
+                                  <AvatarFallback className={`${recipient.avatarBg} text-xs font-semibold`}>
+                                    {recipient.avatar}
+                                  </AvatarFallback>
+                                </Avatar>
+                                <div className="flex-1 min-w-0">
+                                  <div className="font-medium text-slate-900 dark:text-white text-sm">
+                                    {recipient.name}
+                                  </div>
+                                  <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                                    {recipient.bankLogo === "credit-card" ? (
+                                      <CreditCard className="h-3 w-3 text-blue-500" />
+                                    ) : (
+                                      <Circle className="h-3 w-3 text-orange-500 fill-orange-500" />
+                                    )}
+                                    <span>{recipient.bank} {recipient.accountNumber}</span>
+                                  </div>
+                                  <div className="text-xs text-slate-400 mt-0.5">
+                                    {recipient.type}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
                         </div>
                       </div>
 
@@ -506,7 +552,7 @@ export function PayoutModal({ open, onOpenChange }: PayoutModalProps) {
                         </h3>
 
                         {/* Search and Action Buttons Row */}
-                        <div className="flex items-center gap-3">
+                        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                           <div className="relative flex-1">
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
                             <Input
@@ -514,18 +560,20 @@ export function PayoutModal({ open, onOpenChange }: PayoutModalProps) {
                               className="pl-10 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700"
                             />
                           </div>
-                          <Button variant="outline" size="sm" className="gap-2 text-primary border-slate-200 dark:border-slate-700">
-                            <Mail className="h-4 w-4" />
-                            Invite
-                          </Button>
-                          <Button variant="outline" size="sm" className="gap-2 text-primary border-slate-200 dark:border-slate-700">
-                            <Plus className="h-4 w-4" />
-                            Add New
-                          </Button>
+                          <div className="flex gap-2">
+                            <Button variant="outline" size="sm" className="flex-1 sm:flex-initial gap-2 text-primary border-slate-200 dark:border-slate-700">
+                              <Mail className="h-4 w-4" />
+                              Invite
+                            </Button>
+                            <Button variant="outline" size="sm" className="flex-1 sm:flex-initial gap-2 text-primary border-slate-200 dark:border-slate-700">
+                              <Plus className="h-4 w-4" />
+                              Add New
+                            </Button>
+                          </div>
                         </div>
 
-                        {/* Recipients Table */}
-                        <div className="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden bg-white dark:bg-neutral-900">
+                        {/* Recipients Table - Desktop */}
+                        <div className="hidden md:block border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden bg-white dark:bg-neutral-900">
                           {/* Table Header */}
                           <div className="grid grid-cols-5 gap-4 px-4 py-2.5 bg-slate-50 dark:bg-slate-800/50 text-xs font-medium text-slate-600 dark:text-slate-400 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-10">
                             <div className="col-span-2">Name</div>
@@ -568,6 +616,36 @@ export function PayoutModal({ open, onOpenChange }: PayoutModalProps) {
                               </div>
                             ))}
                           </div>
+                        </div>
+
+                        {/* Recipients Cards - Mobile */}
+                        <div className="md:hidden space-y-2">
+                          {recipients.map((recipient) => (
+                            <div
+                              key={recipient.id}
+                              className="p-3 rounded-xl border border-slate-200 dark:border-slate-700"
+                            >
+                              <div className="flex items-start gap-3">
+                                <input type="checkbox" className="accent-primary w-4 h-4 mt-1" />
+                                <Avatar className="h-8 w-8 shrink-0">
+                                  <AvatarFallback className={`${recipient.avatarBg} text-[10px] font-semibold`}>
+                                    {recipient.avatar}
+                                  </AvatarFallback>
+                                </Avatar>
+                                <div className="flex-1 min-w-0">
+                                  <div className="font-medium text-slate-900 dark:text-white text-sm">
+                                    {recipient.name}
+                                  </div>
+                                  <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                                    {recipient.bank} {recipient.accountNumber} • {recipient.type}
+                                  </div>
+                                </div>
+                                <div className="text-sm font-medium text-slate-900 dark:text-white">
+                                  1,000.00
+                                </div>
+                              </div>
+                            </div>
+                          ))}
                         </div>
                       </div>
                     </div>
