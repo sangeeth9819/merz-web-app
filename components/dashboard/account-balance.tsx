@@ -90,7 +90,7 @@ export function AccountBalance() {
   };
 
   return (
-    <Card className="border-0 shadow-sm bg-white dark:bg-slate-900 transition-colors duration-300">
+    <Card className="border-0 shadow-sm bg-white dark:bg-neutral-900 transition-colors duration-300">
       <CardHeader className="pb-4">
         <CardDescription className="text-xs md:text-sm text-slate-500 dark:text-slate-400">Account Balance</CardDescription>
         <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-3">
@@ -113,7 +113,7 @@ export function AccountBalance() {
       <CardContent>
         {/* Chart */}
         <div 
-          className="h-48 md:h-64 w-full rounded-lg relative overflow-hidden bg-white dark:bg-slate-900 cursor-crosshair"
+          className="h-48 md:h-64 w-full rounded-lg relative overflow-hidden bg-white dark:bg-neutral-900 cursor-crosshair"
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
         >

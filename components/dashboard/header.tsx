@@ -38,7 +38,7 @@ export function Header({ greeting = "Good evening", userName = "Mayushan", onMen
   const isDark = theme === "dark";
 
   return (
-    <header className="sticky top-0 z-10 flex h-16 items-center justify-between bg-white dark:bg-slate-900 px-4 md:px-6 transition-colors duration-300">
+    <header className="sticky top-0 z-10 flex h-16 items-center justify-between bg-white dark:bg-neutral-900 px-4 md:px-6 transition-colors duration-300">
       <div className="flex items-center gap-4">
         {/* Mobile menu button */}
         <Button 
