@@ -176,9 +176,9 @@ export function AddRecipientModal({ open, onOpenChange }: AddRecipientModalProps
                         </div>
 
                         {/* Content */}
-                        <div className="flex-1 flex flex-col md:flex-row overflow-hidden bg-white dark:bg-neutral-900">
+                        <div className="flex-1 flex flex-col lg:flex-row overflow-hidden bg-white dark:bg-neutral-900">
                             {/* Mobile Steps Indicator */}
-                            <div className="md:hidden flex items-center justify-between px-4 py-3 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-neutral-900/50 shrink-0 overflow-x-auto">
+                            <div className="lg:hidden flex items-center justify-center px-4 py-3 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-neutral-900/50 shrink-0">
                                 {steps.map((step, index) => (
                                     <div key={step.number} className="flex items-center">
                                         <div
@@ -198,8 +198,8 @@ export function AddRecipientModal({ open, onOpenChange }: AddRecipientModalProps
                                 ))}
                             </div>
 
-                            {/* Left Sidebar - Steps (Hidden on Mobile) */}
-                            <div className="hidden md:block w-64 border-r border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-neutral-900/50 p-6 shrink-0">
+                            {/* Left Sidebar - Steps (Hidden on Mobile/Tablet) */}
+                            <div className="hidden lg:block w-64 border-r border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-neutral-900/50 p-6 shrink-0">
                                 <div className="space-y-3">
                                     {steps.map((step) => (
                                         <div
@@ -228,7 +228,7 @@ export function AddRecipientModal({ open, onOpenChange }: AddRecipientModalProps
                             </div>
 
                             {/* Main Content Area */}
-                            <ScrollArea className="flex-1 p-4 md:p-8">
+                            <ScrollArea className="flex-1 p-4 lg:p-8">
                                 <div className="max-w-3xl mx-auto pb-24">
                                     {/* Step 1: General */}
                                     {currentStep === 1 && (
@@ -236,11 +236,11 @@ export function AddRecipientModal({ open, onOpenChange }: AddRecipientModalProps
                                             <h3 className="text-2xl font-semibold text-slate-900 dark:text-white">General</h3>
 
                                             {/* Onboarding Link Banner */}
-                                            <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-4 flex items-center justify-between">
+                                            <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-4 flex flex-col sm:flex-row sm:items-center gap-3 sm:justify-between">
                                                 <p className="text-sm text-slate-600 dark:text-slate-400">
                                                     Don't have all their details? Send an onboarding link, let them fill in their details.
                                                 </p>
-                                                <Button variant="outline" size="sm" className="gap-2">
+                                                <Button variant="outline" size="sm" className="gap-2 shrink-0 w-full sm:w-auto">
                                                     Send Now
                                                     <ArrowRight className="h-4 w-4" />
                                                 </Button>
@@ -251,7 +251,7 @@ export function AddRecipientModal({ open, onOpenChange }: AddRecipientModalProps
                                                 <Label className="text-sm font-medium text-slate-900 dark:text-white">
                                                     Recipient Category
                                                 </Label>
-                                                <div className="grid grid-cols-2 gap-2 md:gap-3">
+                                                <div className="grid grid-cols-2 gap-2 sm:gap-3">
                                                     <button
                                                         onClick={() => setCategory("Individual")}
                                                         className={`p-4 rounded-xl border-2 transition-all ${category === "Individual"
@@ -288,7 +288,7 @@ export function AddRecipientModal({ open, onOpenChange }: AddRecipientModalProps
                                                 <Label className="text-sm font-medium text-slate-900 dark:text-white">
                                                     Recipient Type
                                                 </Label>
-                                                <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
+                                                <div className="grid grid-cols-3 gap-2">
                                                     {[
                                                         { value: "Vendor", icon: ShoppingBag },
                                                         { value: "Employee", icon: UserCheck },
@@ -354,7 +354,7 @@ export function AddRecipientModal({ open, onOpenChange }: AddRecipientModalProps
                                             </div>
 
                                             {/* Email and Phone */}
-                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                 <div className="space-y-2">
                                                     <Label htmlFor="email" className="text-sm font-medium">
                                                         Email Address (optional)
@@ -402,7 +402,7 @@ export function AddRecipientModal({ open, onOpenChange }: AddRecipientModalProps
                                                     placeholder="Line 2"
                                                     className="bg-white dark:bg-slate-800"
                                                 />
-                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                     <Select value={formData.city} onValueChange={(value) => setFormData({ ...formData, city: value })}>
                                                         <SelectTrigger className="bg-white dark:bg-slate-800">
                                                             <SelectValue placeholder="City" />
@@ -424,7 +424,7 @@ export function AddRecipientModal({ open, onOpenChange }: AddRecipientModalProps
                                                         </SelectContent>
                                                     </Select>
                                                 </div>
-                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                     <div className="flex items-center gap-2 px-3 py-2 rounded-md border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
                                                         <span className="text-lg">🇱🇰</span>
                                                         <span className="text-sm text-slate-900 dark:text-white">Sri Lanka</span>
@@ -503,7 +503,7 @@ export function AddRecipientModal({ open, onOpenChange }: AddRecipientModalProps
                                             </div>
 
                                             {/* Branch and Account Number */}
-                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                 <div className="space-y-2">
                                                     <Label htmlFor="branch" className="text-sm font-medium">
                                                         Branch
