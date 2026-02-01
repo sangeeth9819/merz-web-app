@@ -118,9 +118,9 @@ const recentTransactions: Transaction[] = [
 
 export function RecentTransactions() {
   const { isAmountVisible } = useAmountVisibility();
-
+  
   return (
-    <Card className="border-0 shadow-sm bg-white dark:bg-neutral-900 transition-colors duration-300">
+    <Card className="border-0 shadow-sm bg-white dark:bg-slate-900 transition-colors duration-300">
       <CardHeader className="flex flex-row items-center justify-between pb-6">
         <CardTitle className="text-lg md:text-xl font-semibold text-slate-900 dark:text-white">Recent Transactions</CardTitle>
         <button className="text-sm text-primary hover:text-primary/80 font-medium transition-colors flex items-center gap-1">
@@ -137,7 +137,7 @@ export function RecentTransactions() {
             <div>Description</div>
             <div className="text-right">Amount</div>
           </div>
-
+          
           <div className="divide-y divide-slate-100 dark:divide-slate-800">
             {recentTransactions.map((transaction) => (
               <div

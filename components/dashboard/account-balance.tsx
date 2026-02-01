@@ -11,25 +11,25 @@ export function AccountBalance() {
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!svgRef.current) return;
-
+    
     const rect = svgRef.current.getBoundingClientRect();
     const mouseX = e.clientX - rect.left;
     const x = (mouseX / rect.width) * 800;
-
+    
     // Clamp x to chart bounds
     if (x < 0 || x > 800) return;
-
+    
     // Calculate Y position on the curve for this exact X
     const y = getCurveYAtX(x);
-
+    
     // Calculate approximate value based on Y position (inverted scale)
     const maxValue = 3300000;
     const minValue = 3100000;
     const value = maxValue - ((y / 200) * (maxValue - minValue));
-
+    
     // Get approximate date based on X position
     const date = getDateAtX(x);
-
+    
     setHoveredPoint({ x, y, value, date });
   };
 
@@ -69,14 +69,14 @@ export function AccountBalance() {
     const uu = u * u;
     const uuu = uu * u;
     const ttt = tt * t;
-
+    
     return uuu * p0 + 3 * uu * t * p1 + 3 * u * tt * p2 + ttt * p3;
   };
 
   const getDateAtX = (x: number): string => {
     const dates = ["20 Oct", "25 Oct", "30 Oct", "5 Nov", "10 Nov", "15 Nov", "20 Nov"];
     const datePositions = [0, 133, 267, 400, 520, 640, 800];
-
+    
     for (let i = 0; i < datePositions.length - 1; i++) {
       if (x >= datePositions[i] && x <= datePositions[i + 1]) {
         return dates[i];
@@ -90,7 +90,7 @@ export function AccountBalance() {
   };
 
   return (
-    <Card className="border-0 shadow-sm bg-white dark:bg-neutral-900 transition-colors duration-300">
+    <Card className="border-0 shadow-sm bg-white dark:bg-slate-900 transition-colors duration-300">
       <CardHeader className="pb-4">
         <CardDescription className="text-xs md:text-sm text-slate-500 dark:text-slate-400">Account Balance</CardDescription>
         <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-3">
@@ -112,8 +112,8 @@ export function AccountBalance() {
       </CardHeader>
       <CardContent>
         {/* Chart */}
-        <div
-          className="h-48 md:h-64 w-full rounded-lg relative overflow-hidden bg-white dark:bg-neutral-900 cursor-crosshair"
+        <div 
+          className="h-48 md:h-64 w-full rounded-lg relative overflow-hidden bg-white dark:bg-slate-900 cursor-crosshair"
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
         >
@@ -124,13 +124,13 @@ export function AccountBalance() {
                 <stop offset="100%" stopColor="rgb(79, 209, 197)" stopOpacity="0.02" />
               </linearGradient>
             </defs>
-
+            
             {/* Smooth area fill */}
             <path
               d="M0,120 C80,110 120,100 200,70 C280,40 320,80 400,90 C450,95 470,40 520,45 C570,50 600,80 680,65 C730,55 770,30 800,25 L800,200 L0,200 Z"
               fill="url(#areaGradient)"
             />
-
+            
             {/* Smooth line */}
             <path
               d="M0,120 C80,110 120,100 200,70 C280,40 320,80 400,90 C450,95 470,40 520,45 C570,50 600,80 680,65 C730,55 770,30 800,25"
@@ -139,7 +139,7 @@ export function AccountBalance() {
               strokeWidth="2.5"
               strokeLinecap="round"
             />
-
+            
             {/* Dynamic vertical dashed line at hover point */}
             {hoveredPoint && (
               <>
@@ -153,7 +153,7 @@ export function AccountBalance() {
                   strokeDasharray="4 4"
                   opacity="0.6"
                 />
-
+                
                 {/* Simple clean circle indicator */}
                 <circle
                   cx={hoveredPoint.x}
@@ -165,7 +165,7 @@ export function AccountBalance() {
               </>
             )}
           </svg>
-
+          
           {/* Tooltip */}
           {hoveredPoint && (
             <div
@@ -173,10 +173,10 @@ export function AccountBalance() {
               style={{
                 left: `min(max(10%, ${(hoveredPoint.x / 800) * 100}%), 90%)`,
                 top: `max(10px, ${(hoveredPoint.y / 200) * 100}%)`,
-                transform: hoveredPoint.x < 100
-                  ? 'translate(0, -110%)'
-                  : hoveredPoint.x > 700
-                    ? 'translate(-100%, -110%)'
+                transform: hoveredPoint.x < 100 
+                  ? 'translate(0, -110%)' 
+                  : hoveredPoint.x > 700 
+                    ? 'translate(-100%, -110%)' 
                     : 'translate(-50%, -110%)',
               }}
             >
@@ -187,7 +187,7 @@ export function AccountBalance() {
             </div>
           )}
         </div>
-
+        
         {/* X-axis labels */}
         <div className="mt-4 flex justify-between text-xs text-slate-500 dark:text-slate-400">
           <span>20 Oct</span>
